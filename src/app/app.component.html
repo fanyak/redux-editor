@@ -1,0 +1,24 @@
+
+<h2>Type and select some text</h2>
+<form name="editor">
+  <textarea name="message"
+  (keydown) = "onType($event)"
+  (mouseup) = "onSelection($event)"
+  placeholder="type something and then select a part of it"></textarea>
+</form>
+<div *ngIf="txt$ | async as texts">
+  <h3 *ngIf="texts.length"> Selected Texts</h3>
+  <table *ngIf="texts.length">
+    <thead>
+      <th>Selected text |</th>
+      <th>Remove From Selection</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let text of texts; let i = index">
+        <td>{{text}}</td>
+        <td><a href="javascript:void(0)" (click)=remove(i)>remove</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
